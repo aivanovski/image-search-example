@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.aivanouski.example.imsearch.presentation.images.ImagesViewModel.ScreenState" />
+
+        <variable
+            name="viewModel"
+            type="com.aivanouski.example.imsearch.presentation.images.ImagesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_your_images"
+            android:layout_marginHorizontal="@dimen/element_margin"
+            android:layout_marginTop="@dimen/element_margin"
+            app:endIconDrawable="@drawable/ic_close_24"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.query}"
+                app:onTextChanged="@{(text) -> viewModel.onQueryTextChanged(text)}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/element_margin"
+            app:isVisible="@{viewModel.state == ScreenState.DATA}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_image" />
+
+        <TextView
+            android:id="@+id/emptyText"
+            style="@style/AppComponents.EmptyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/element_margin"
+            android:text="@string/no_images_message"
+            app:isVisible="@{viewModel.state == ScreenState.EMPTY}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField" />
+
+        <TextView
+            android:id="@+id/errorText"
+            style="@style/AppComponents.ErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/element_margin"
+            android:text="@{viewModel.errorText}"
+            app:isVisible="@{viewModel.state == ScreenState.ERROR}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField"
+            tools:text="@string/error_has_been_occurred" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isVisible="@{viewModel.state == ScreenState.LOADING}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchField" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

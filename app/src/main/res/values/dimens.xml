@@ -1,0 +1,21 @@
+<resources>
+
+    <dimen name="quarter_margin">4dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
+    <dimen name="element_margin">16dp</dimen>
+    <dimen name="group_margin">24dp</dimen>
+
+    <dimen name="large_text_size">24sp</dimen>
+    <dimen name="primary_text_size">16sp</dimen>
+    <dimen name="secondary_text_size">14sp</dimen>
+
+    <dimen name="medium_placeholder_size">64dp</dimen>
+    <dimen name="large_placeholder_size">128dp</dimen>
+
+    <dimen name="image_item_height">220dp</dimen>
+    <dimen name="image_card_corner_radius">8dp</dimen>
+
+    <dimen name="small_user_icon_size">24dp</dimen>
+    <dimen name="medium_user_icon_size">40dp</dimen>
+
+</resources>

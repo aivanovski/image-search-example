@@ -1,0 +1,103 @@
+apply from: '../config.gradle'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    defaultConfig {
+        applicationId "com.aivanouski.example.imsearch"
+        minSdkVersion 24
+        compileSdk 33
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError true
+    }
+}
+
+dependencies {
+    // Tests
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "androidx.test:core:$testCoreVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // MultiDex
+    implementation "androidx.multidex:multidex:$multidexVersion"
+
+    // DI
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koinVersion"
+
+    // Logger
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // AndroidX libraries
+    implementation "androidx.annotation:annotation:$annotationsVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.activity:activity-ktx:$activityKtxVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // Navigation
+    implementation "com.github.terrakok:cicerone:$ciceroneVersion"
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpLoggerVersion"
+
+    // Images
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation "com.github.chrisbanes:PhotoView:$photoViewVersion"
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+}

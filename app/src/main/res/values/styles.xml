@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppComponents" />
+
+    <style name="AppComponents.EmptyText">
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppComponents.ErrorText">
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textColor">@color/error_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppComponents.PrimaryText">
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+    </style>
+
+    <style name="AppComponents.PrimaryText.SingleLine">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="AppComponents.SecondaryText">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textColor">@color/secondary_text_color</item>
+    </style>
+
+    <style name="AppComponents.SecondaryText.SingleLine">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+</resources>

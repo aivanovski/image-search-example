@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#6200ee</color>
+    <color name="primary_variant">#3700b3</color>
+    <color name="on_primary">#000000</color>
+    <color name="surface">#ffffff</color>
+    <color name="secondary_variant">#018786</color>
+    <color name="secondary">#03dac6</color>
+    <color name="on_secondary">#000000</color>
+    <color name="on_surface">#000000</color>
+    <color name="background">#ffffff</color>
+    <color name="on_background">#000000</color>
+    <color name="error">#b00020</color>
+    <color name="on_error">#ffffff</color>
+
+    <color name="primary_text_color">@color/on_primary</color>
+    <color name="secondary_text_color">#999999</color>
+    <color name="error_text_color">@color/error</color>
+
+    <color name="card_background">#efefef</color>
+    <color name="image_background">#dddddd</color>
+
+</resources>

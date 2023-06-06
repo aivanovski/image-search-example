@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.aivanouski.example.imsearch.presentation.imageDetails.ImageDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-149dp" />
+
+            <ImageView
+                android:id="@+id/imagePlaceholder"
+                android:layout_width="@dimen/large_placeholder_size"
+                android:layout_height="@dimen/large_placeholder_size"
+                android:src="@drawable/ic_image_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                app:layout_constraintEnd_toEndOf="@id/image"
+                app:layout_constraintStart_toStartOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isVisible="@{viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back_24" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userIcon"
+            android:layout_width="@dimen/medium_user_icon_size"
+            android:layout_height="@dimen/medium_user_icon_size"
+            android:layout_marginBottom="@dimen/quarter_margin"
+            android:layout_marginHorizontal="@dimen/element_margin"
+            app:imageUrl="@{viewModel.userImageUrl}"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/tags"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholder="@{@drawable/ic_user_placeholder}"
+            tools:src="@drawable/ic_user_placeholder" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/AppComponents.PrimaryText.SingleLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/half_margin"
+            android:text="@{viewModel.image.username}"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="@id/userIcon"
+            app:layout_constraintEnd_toEndOf="@id/tags"
+            app:layout_constraintStart_toEndOf="@id/userIcon"
+            app:layout_constraintTop_toTopOf="@id/userIcon"
+            tools:text="Username" />
+
+        <TextView
+            android:id="@+id/tags"
+            style="@style/AppComponents.PrimaryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:layout_marginHorizontal="@dimen/element_margin"
+            android:text="@{viewModel.image.tags}"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/commentsIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="river, mountains, sunset" />
+
+        <ImageView
+            android:id="@+id/likesIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/element_margin"
+            android:src="@drawable/ic_like_40"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/likesCount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/likesCount"
+            style="@style/AppComponents.SecondaryText.SingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:text="@{Integer.toString(viewModel.image.likes)}"
+            android:textColor="@color/primary_text_color"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/downloadIcon"
+            app:layout_constraintEnd_toEndOf="@id/likesIcon"
+            app:layout_constraintStart_toStartOf="@id/likesIcon"
+            tools:text="128" />
+
+        <ImageView
+            android:id="@+id/downloadIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/element_margin"
+            android:src="@drawable/ic_download_40"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/downloadCount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/downloadCount"
+            style="@style/AppComponents.SecondaryText.SingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:text="@{Integer.toString(viewModel.image.downloads)}"
+            android:textColor="@color/primary_text_color"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/commentsIcon"
+            app:layout_constraintEnd_toEndOf="@id/downloadIcon"
+            app:layout_constraintStart_toStartOf="@id/downloadIcon"
+            tools:text="256" />
+
+        <ImageView
+            android:id="@+id/commentsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/element_margin"
+            android:src="@drawable/ic_comment_40"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toTopOf="@id/commentsCount"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/commentsCount"
+            style="@style/AppComponents.SecondaryText.SingleLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/element_margin"
+            android:text="@{Integer.toString(viewModel.image.comments)}"
+            android:textColor="@color/primary_text_color"
+            app:isVisible="@{!viewModel.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/commentsIcon"
+            app:layout_constraintStart_toStartOf="@id/commentsIcon"
+            tools:text="512" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
